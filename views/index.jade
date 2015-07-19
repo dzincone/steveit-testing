@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  
+  h1= title
+  p Welcome to #{title}
+  form(action="/stevit", method="POST")
+    label(for="search") Steveit
+    input(type="text" id="search" name="search")
+    input(type="submit" value="Steveit!")
+  for messages in message
+    if (messages.direction === "inbound")
+      .inbound
+        p= messages.body
+  for messages in message
+    if (messages.direction === 'outbound-api')
+      .outbound 
+        p= messages.body
